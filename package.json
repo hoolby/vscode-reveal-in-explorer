@@ -1,0 +1,83 @@
+{
+  "name": "vscode-reveal-in-explorer",
+  "displayName": "Reveal in System Explorer",
+  "description": "Adds 'Reveal in System Explorer' and 'Open Containing Folder' to the right-click context menu. Essential for Antigravity Editor.",
+  "version": "0.0.1",
+  "icon": "icon.png",
+  "publisher": "hoolby",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hoolby/vscode-reveal-in-explorer"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "revealInSystemExplorer",
+        "title": "Reveal in System Explorer"
+      },
+      {
+        "command": "openContainingFolder",
+        "title": "Open Containing Folder"
+      },
+      {
+        "command": "copyFileName",
+        "title": "Copy File Name"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "revealInSystemExplorer",
+          "when": "resourceScheme == file",
+          "group": "z_reveal"
+        },
+        {
+          "command": "openContainingFolder",
+          "when": "resourceScheme == file",
+          "group": "z_reveal"
+        },
+        {
+          "command": "copyFileName",
+          "when": "resourceScheme == file",
+          "group": "z_reveal"
+        }
+      ],
+      "editor/title/context": [
+        {
+          "command": "revealInSystemExplorer",
+          "group": "z_reveal"
+        },
+        {
+          "command": "openContainingFolder",
+          "group": "z_reveal"
+        },
+        {
+          "command": "copyFileName",
+          "group": "z_reveal"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.0.0"
+  }
+}
